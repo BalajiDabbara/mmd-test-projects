@@ -9,27 +9,32 @@ using System.IO;
 
 namespace OnlineCalculatorApp.Tests
 {
+    /// <summary>
+    /// OnlineCalculatorAppTestFactory class
+    /// </summary>
     public class OnlineCalculatorAppTestFactory
     {
-        private static Dictionary<string, StringValues> CreateDictionary(string key, string value)
-        {
-            var qs = new Dictionary<string, StringValues>
-            {
-                { key, value }
-            };
-            return qs;
-        }
-
+        /// <summary>
+        /// Get request body memory stream from json body.
+        /// </summary>
+        /// <param name="body"></param>
+        /// <returns></returns>
         private static MemoryStream GetRequestBodyStream(string body)
         {
-            MemoryStream ms = new MemoryStream();
-            StreamWriter sw = new StreamWriter(ms);
-            sw.Write(body);
-            sw.Flush();
-            ms.Position = 0;
-            return ms;
+            MemoryStream mmemoryStream = new MemoryStream();
+            StreamWriter streamWriter = new StreamWriter(mmemoryStream);
+            streamWriter.Write(body);
+            streamWriter.Flush();
+            mmemoryStream.Position = 0;
+            return mmemoryStream;
         }
 
+        /// <summary>
+        /// Create the HttpRequest for test methods.
+        /// </summary>
+        /// <param name="userName">The user name</param>
+        /// <param name="infixExpression">The infic expression</param>
+        /// <returns>The HttpRequest</returns>
         public static HttpRequest CreateHttpRequest(string userName = "Test", string infixExpression = "(1)")
         {
             Dictionary<string, string> jsonData = new Dictionary<string, string>();
@@ -41,6 +46,11 @@ namespace OnlineCalculatorApp.Tests
             return request;
         }
 
+        /// <summary>
+        /// Create loggers
+        /// </summary>
+        /// <param name="type">LoggerType</param>
+        /// <returns>Logger object</returns>
         public static ILogger CreateLogger(LoggerTypes type = LoggerTypes.Null)
         {
             ILogger logger;

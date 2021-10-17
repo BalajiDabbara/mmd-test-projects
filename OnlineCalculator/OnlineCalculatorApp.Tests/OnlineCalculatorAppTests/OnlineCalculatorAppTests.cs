@@ -4,10 +4,16 @@ using Xunit;
 
 namespace OnlineCalculatorApp.Tests
 {
+    /// <summary>
+    /// OnlineCalculatorAppTests class
+    /// </summary>
     public class OnlineCalculatorAppTests
     {
         private readonly ILogger logger = OnlineCalculatorAppTestFactory.CreateLogger();
 
+        /// <summary>
+        /// Validate the valid infix expression with success message
+        /// </summary>
         [Fact]
         public async void ValidateInfixExpressionEvaluationSuccess()
         {
@@ -24,6 +30,9 @@ namespace OnlineCalculatorApp.Tests
             Assert.Equal(string.Format(ErrorMessages.ExpressionEvaluationSuccess, userName, infixExpression, expectedResult), response.Value);
         }
 
+        /// <summary>
+        /// Validate the invalid infix expression with failure message
+        /// </summary>
         [Fact]
         public async void ValidateInfixExpressionEvaluationFailedOnInvalidInput()
         {
@@ -40,6 +49,9 @@ namespace OnlineCalculatorApp.Tests
             Assert.Contains(string.Format(ErrorMessages.ExpressionEvaluationFailedWithoutException, userName), responseString);
         }
 
+        /// <summary>
+        /// Validate the valid infix expressionwith all operators
+        /// </summary>
         [Fact]
         public async void ValidateInfixExpressionEvaluationSuccesssOnAllOperators()
         {
@@ -56,6 +68,9 @@ namespace OnlineCalculatorApp.Tests
             Assert.Equal(string.Format(ErrorMessages.ExpressionEvaluationSuccess, userName, infixExpression, expectedResult), response.Value);
         }
 
+        /// <summary>
+        /// Validate the valid infix expression and empty user for failure.
+        /// </summary>
         [Fact]
         public async void ValidateEmptyUserNameThrowsAnError()
         {
@@ -70,6 +85,9 @@ namespace OnlineCalculatorApp.Tests
             Assert.Equal(string.Format(ErrorMessages.UserNameEmpty, userName), response.Value);
         }
 
+        /// <summary>
+        /// Validate the memory recall functionality.
+        /// </summary>
         [Fact]
         public async void ValidateMemoryRecall()
         {
@@ -98,6 +116,9 @@ namespace OnlineCalculatorApp.Tests
 
         }
 
+        /// <summary>
+        /// Validate the operation on memory recall functionality.
+        /// </summary>
         [Fact]
         public async void ValidateOperationOnMemoryRecall()
         {
@@ -126,6 +147,9 @@ namespace OnlineCalculatorApp.Tests
 
         }
 
+        /// <summary>
+        /// Validate the memory recall functionality for different users.
+        /// </summary>
         [Fact]
         public async void ValidateMemoryRecallForDifferentUsers()
         {

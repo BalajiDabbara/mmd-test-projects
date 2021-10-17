@@ -4,6 +4,9 @@ using System.Text;
 
 namespace OnlineCalculatorApp.Tests
 {
+    /// <summary>
+    /// LoggerType enum
+    /// </summary>
     public enum LoggerTypes
     {
         Null,
