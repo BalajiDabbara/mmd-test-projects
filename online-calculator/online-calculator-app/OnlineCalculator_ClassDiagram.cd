@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="OnlineCalculator.Constants">
+    <Position X="3.75" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>QAABAAAAAAAAIAAAAAAAAAAABAEAAAABAAAQAAAAgBA=</HashCode>
+      <FileName>Constants\Constants.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OnlineCalculator.ExpressionEvaluator" BaseTypeListCollapsed="true">
+    <Position X="15.75" Y="2" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AEgAAAQABggCAAAAAABAAAAwAAAAIAAAAAAAAAEAgAA=</HashCode>
+      <FileName>ExpressionEvaluator\ExpressionEvaluator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OnlineCalculator.ExpressionProcessor" BaseTypeListCollapsed="true">
+    <Position X="11.25" Y="2.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAIAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ExpressionEvaluator\ExpressionProcessor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OnlineCalculator.ExprTreeNode">
+    <Position X="11.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAQAAAAgAA=</HashCode>
+      <FileName>ExpressionEvaluator\ExprTreeNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OnlineCalculator.CalculatorHelper">
+    <Position X="3.5" Y="3.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAEAAwBAACAAAgAACAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\CalculatorHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OnlineCalculator.CalculatorMemory">
+    <Position X="13" Y="4.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>MemoryManager\CalculatorMemory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OnlineCalculator.MemoryManager" BaseTypeListCollapsed="true">
+    <Position X="13.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgACAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MemoryManager\MemoryManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OnlineCalculator.OnlineCalculatorBase">
+    <Position X="8.75" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAoAAAAAAAAAAAAAgAQAAAAAAAAAAAIgAAAAA=</HashCode>
+      <FileName>OnlineCalculator\OnlineCalculatorBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OnlineCalculator.OnlineCalculatorFactory">
+    <Position X="6.25" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>OnlineCalculator\OnlineCalculatorFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OnlineCalculator.SimpleOnlineCalculator">
+    <Position X="8.75" Y="3.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAoAAAAAAAACAAAAgAQAAAAEACAAAAIggAACA=</HashCode>
+      <FileName>OnlineCalculator\SimpleOnlineCalculator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OnlineCalculator.SimpleOnlineCalculatorFactory">
+    <Position X="6" Y="2.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAACAAAAAAAAAAAAACAAAAAAgAACA=</HashCode>
+      <FileName>OnlineCalculator\SimpleOnlineCalculatorFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OnlineCalculator.Operator">
+    <Position X="6" Y="5.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>OperationEvaluator\OperatorFactory\Operator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OnlineCalculator.OperatorFactory">
+    <Position X="0.75" Y="6" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>OperationEvaluator\OperatorFactory\OperatorFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OnlineCalculator.Addition">
+    <Position X="0.75" Y="8" Width="2" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAgAAAAAAAAAAQAAAAAIAgAAAAAAAQAAAA=</HashCode>
+      <FileName>OperationEvaluator\Operators\Addition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OnlineCalculator.Division">
+    <Position X="3.25" Y="8" Width="2" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAgAAAAAAAAAAQAAAAAIAgAAAAAAAQAAAA=</HashCode>
+      <FileName>OperationEvaluator\Operators\Division.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OnlineCalculator.Multiplication">
+    <Position X="5.5" Y="8" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAgAAAAAAAAAAQAAAAAIAgAAAAAAAQAAAA=</HashCode>
+      <FileName>OperationEvaluator\Operators\Multiplication.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OnlineCalculator.Subtraction">
+    <Position X="8" Y="8" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAgAAAAAAAAAAQAAAAAIAgAAAAAAAQAAAA=</HashCode>
+      <FileName>OperationEvaluator\Operators\Subtraction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OnlineCalculator.OperationEvaluator" BaseTypeListCollapsed="true">
+    <Position X="11.25" Y="8.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAQAAAAAAAAADAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>OperationEvaluator\OperationEvaluator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OnlineCalculator.SessionManager" BaseTypeListCollapsed="true">
+    <Position X="14" Y="8.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAgAAAAAAAIAAAgAAAAABAAAQAAAAAAACAA=</HashCode>
+      <FileName>SessionManager\SessionManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OnlineCalculator.User">
+    <Position X="16.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>UserContext\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OnlineCalculator.UserContext" BaseTypeListCollapsed="true">
+    <Position X="16.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>UserContext\UserContext.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OnlineCalculator.OnlineCalculator">
+    <Position X="1" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>OnlineCalculator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="OnlineCalculator.IExpressionEvaluator">
+    <Position X="15.75" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ExpressionEvaluator\IExpressionEvaluator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="OnlineCalculator.IExpressionProcessor">
+    <Position X="11.25" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAIAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ExpressionEvaluator\IExpressionProcessor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="OnlineCalculator.IMemoryManager">
+    <Position X="13.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MemoryManager\IMemoryManager.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="OnlineCalculator.IOperationEvaluator">
+    <Position X="11.25" Y="6.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAQAAAAAAAAADAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>OperationEvaluator\IOperationEvaluator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="OnlineCalculator.ISessionManager">
+    <Position X="14" Y="6.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>SessionManager\ISessionManager.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="OnlineCalculator.IUserContext">
+    <Position X="16.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>UserContext\IUserContext.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="OnlineCalculator.CalculatorType">
+    <Position X="1" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>OnlineCalculator\CalculatorType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="OnlineCalculator.OperationPrecedence">
+    <Position X="1" Y="4.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>QAABAAAAAAAAAAAAAAAAAAAAABAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>OperationEvaluator\OperatorFactory\OperationPrecedence.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
