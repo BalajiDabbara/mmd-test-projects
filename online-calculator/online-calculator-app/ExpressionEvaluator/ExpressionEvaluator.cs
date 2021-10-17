@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace OnlineCalculator
+namespace OnlineCalculatorApp
 {
     class ExpressionEvaluator : IExpressionEvaluator
     {
@@ -97,9 +97,9 @@ namespace OnlineCalculator
                 {
                     operatorStack.Push(infixExpr[idx]);
                 }
-                else if(CalculatorHelper.IsMemoryRecall(infixExpr[idx]))
+                else if (CalculatorHelper.IsMemoryRecall(infixExpr[idx]))
                 {
-                    ProcessMemoryResult(infixExpr, idx, operandStack);
+                    ProcessMemoryResult(infixExpr, memoryResult, operandStack);
                 }
                 else if (CalculatorHelper.IsNumber(infixExpr[idx]))
                 {
@@ -137,7 +137,7 @@ namespace OnlineCalculator
                 long leftOperand = EvaluateExpressionTree(exprTree.left);
                 long rightOperand = EvaluateExpressionTree(exprTree.right);
 
-                Operator arOperator = listOperators != null ? OperatorFactory.GetOperator(listOperators, dataValue[0], leftOperand, rightOperand) 
+                Operator arOperator = listOperators != null ? OperatorFactory.GetOperator(listOperators, dataValue[0], leftOperand, rightOperand)
                                                             : OperatorFactory.GetOperator(dataValue[0], leftOperand, rightOperand);
                 result = arOperator.ExecuteOperation();
             }

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
-namespace OnlineCalculator
+namespace OnlineCalculatorApp
 {
     public static class OnlineCalculator
     {
@@ -20,38 +20,40 @@ namespace OnlineCalculator
             log.LogInformation("C# HTTP trigger function processed a request.");
             string UserName = null;
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            long result = 0;
-            string responseMessage = string.Empty;
 
-
-
-            dynamic data = JsonConvert.DeserializeObject(requestBody);
-            UserName = UserName ?? data?.UserName;
-            string inputInfixExpression = data?.InfixExpression;
+            dynamic requestBodyObject = JsonConvert.DeserializeObject(requestBody);
+            UserName = UserName ?? requestBodyObject?.UserName;
+            string inputInfixExpression = requestBodyObject?.InfixExpression;
             IExpressionProcessor expressionProcessor = new ExpressionProcessor();
-            inputInfixExpression = expressionProcessor.SanitizeExpression(inputInfixExpression);
+            string sanitizedInputInfixExpression = expressionProcessor.SanitizeExpression(inputInfixExpression);
 
-            if (expressionProcessor.ValidateExpression(inputInfixExpression))
+            string responseMessage;
+
+            if (string.IsNullOrEmpty(UserName))
+            {
+                responseMessage = ErrorMessages.UserNameEmpty;
+                return new OkObjectResult(responseMessage);
+            }
+
+            if (expressionProcessor.ValidateExpression(sanitizedInputInfixExpression))
             {
                 try
                 {
                     OnlineCalculatorBase onlineCalculator = GetCalculator(CalculatorType.Simple, UserName, string.Empty);
-                    result = onlineCalculator.Eval(inputInfixExpression);
-                    responseMessage = string.IsNullOrEmpty(UserName)
-                   ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
-                   : $"Hello, {UserName}. Your input expression {inputInfixExpression} has been evaluated to : {result}.";
+                    long result = onlineCalculator.Eval(sanitizedInputInfixExpression);
+                    responseMessage = string.Format(ErrorMessages.ExpressionEvaluationSuccess, UserName, inputInfixExpression, result);
                 }
-                catch(Exception exception)
+                catch (Exception exception)
                 {
-                    responseMessage = $"Hello, {UserName}. Unable to evaluate your expression. Please ensure that your expression is valid {exception.Message}";
+                    responseMessage = string.Format(ErrorMessages.ExpressionEvaluationFailedWithException, UserName, exception.Message);
                 }
             }
             else
             {
-                responseMessage = $"Hello, {UserName}. Unable to evaluate your expression. Please ensure that your expression is valid.";
+                responseMessage = string.Format(ErrorMessages.ExpressionEvaluationFailedWithException, UserName); 
             }
-            
-           
+
+
 
             return new OkObjectResult(responseMessage);
         }
