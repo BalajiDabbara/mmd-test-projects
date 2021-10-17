@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace online_calculator_app.Telemetry
+namespace OnlineCalculatorApp
 {
     /// <summary>
     /// The OnlineCalculatorLoggerProvider
