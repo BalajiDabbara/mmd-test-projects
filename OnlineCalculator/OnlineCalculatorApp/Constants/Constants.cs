@@ -4,6 +4,9 @@ using System.Text;
 
 namespace OnlineCalculatorApp
 {
+    /// <summary>
+    /// Constants
+    /// </summary>
     public static class Constants
     {
         public const char OPEN_PARANTHESIS = '(';

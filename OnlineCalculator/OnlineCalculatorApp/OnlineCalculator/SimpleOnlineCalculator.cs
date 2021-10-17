@@ -4,6 +4,9 @@ using System.Text;
 
 namespace OnlineCalculatorApp
 {
+    /// <summary>
+    /// The SimpleOnlineCalculator
+    /// </summary>
     internal class SimpleOnlineCalculator : OnlineCalculatorBase
     {
         private readonly CalculatorType calculatorType;
@@ -12,6 +15,9 @@ namespace OnlineCalculatorApp
         private IMemoryManager memoryManager;
         private IUserContext userContext;
 
+        /// <summary>
+        /// The CalculatorType
+        /// </summary>
         public override CalculatorType CalculatorType 
         {
             get
@@ -20,6 +26,9 @@ namespace OnlineCalculatorApp
             }
         }
 
+        /// <summary>
+        /// The ExpressionEvaluator
+        /// </summary>
         public override IExpressionEvaluator ExpressionEvaluator 
         {
             get
@@ -32,7 +41,11 @@ namespace OnlineCalculatorApp
                 value = expressionEvaluator;
             }
         }
-        public override ISessionManager EessionManager
+
+        /// <summary>
+        /// The SessionManager
+        /// </summary>
+        public override ISessionManager SessionManager
         {
             get
             {
@@ -44,6 +57,10 @@ namespace OnlineCalculatorApp
                 value = sessionManager;
             }
         }
+
+        /// <summary>
+        /// The MemoryManager
+        /// </summary>
         public override IMemoryManager MemoryManager
         {
             get
@@ -56,6 +73,10 @@ namespace OnlineCalculatorApp
                 value = memoryManager;
             }
         }
+
+        /// <summary>
+        /// The UserContext
+        /// </summary>
         public override IUserContext UserContext
         {
             get
@@ -69,11 +90,13 @@ namespace OnlineCalculatorApp
             }
         }
 
-        //private IExpressionEvaluator expressionEvaluator;
-        //private ISessionManager sessionManager;
-        //private IMemoryManager memoryManager;
-        //private IUserContext userContext;
-
+        /// <summary>
+        /// The SimpleOnlineCalculator constructor
+        /// </summary>
+        /// <param name="expressionEval">Teh expression evaluator.</param>
+        /// <param name="memoryManager">The memory manager.</param>
+        /// <param name="sessionManager">The session manager</param>
+        /// <param name="userContext">The user context</param>
         public SimpleOnlineCalculator
                 (IExpressionEvaluator expressionEval,
                 IMemoryManager memoryManager,
@@ -87,17 +110,11 @@ namespace OnlineCalculatorApp
             this.userContext = userContext;
         }
 
-        //public long Eval()
-        //{
-        //    string userId = userContext.UserName;
-        //    CalculatorMemory calcMemory = sessionManager.GetSessionData(userId);
-        //    long memoryResult = memoryManager.RecallMemory(calcMemory);
-        //    long result = expressionEvaluator.EvaluateInfixExpression(this.InfixExpression, memoryResult);
-        //    calcMemory = memoryManager.UpdateMemory(result);
-        //    sessionManager.UpdateSessionData(userId, calcMemory);
-        //    return result;
-        //}
-
+        /// <summary>
+        /// Evaluates the expression
+        /// </summary>
+        /// <param name="infixExpression">The input infix expression.</param>
+        /// <returns></returns>
         public override long Eval(string infixExpression)
         {
             string userId = userContext.UserName;

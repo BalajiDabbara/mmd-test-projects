@@ -10,17 +10,35 @@ using Newtonsoft.Json;
 
 namespace OnlineCalculatorApp
 {
+    /// <summary>
+    /// The online calculator function app class.
+    /// </summary>
     public static class OnlineCalculator
     {
+        /// <summary>
+        /// The function app runner
+        /// </summary>
+        /// <param name="req">The http request.</param>
+        /// <param name="log">The logger.</param>
+        /// <returns>Action result</returns>
         [FunctionName("OnlineCalculator_Evaluate")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
         {
-            log.LogInformation("C# HTTP trigger function processed a request.");
-            string UserName = null;
+            log.LogInformation("OnlineCalculatorApp function started processiong the request.");
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+            return EvaluateUserExpression(requestBody);
+        }
 
+        /// <summary>
+        /// Evaluates the user input expression and return the result.
+        /// </summary>
+        /// <param name="requestBody">The http request body.</param>
+        /// <returns>Action result</returns>
+        private static IActionResult EvaluateUserExpression(string requestBody)
+        {
+            string UserName = null;
             dynamic requestBodyObject = JsonConvert.DeserializeObject(requestBody);
             UserName = UserName ?? requestBodyObject?.UserName;
             string inputInfixExpression = requestBodyObject?.InfixExpression;
@@ -50,9 +68,8 @@ namespace OnlineCalculatorApp
             }
             else
             {
-                responseMessage = string.Format(ErrorMessages.ExpressionEvaluationFailedWithException, UserName); 
+                responseMessage = string.Format(ErrorMessages.ExpressionEvaluationFailedWithoutException, UserName);
             }
-
 
 
             return new OkObjectResult(responseMessage);

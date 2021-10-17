@@ -62,8 +62,6 @@ namespace OnlineCalculatorApp.Tests
             // Setup
             string userName = "";
             string infixExpression = "(4+2)*4/2-2";
-            long expectedResult = 10;
-
             // Act
             var request = OnlineCalculatorAppTestFactory.CreateHttpRequest(userName, infixExpression);
             var response = (OkObjectResult)await OnlineCalculatorApp.OnlineCalculator.Run(request, logger);

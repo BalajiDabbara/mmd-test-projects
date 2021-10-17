@@ -4,6 +4,9 @@ using System.Text;
 
 namespace OnlineCalculatorApp
 {
+    /// <summary>
+    /// The Operation precedence.
+    /// </summary>
     enum OperationPrecedence
     {
         Addition = 0,

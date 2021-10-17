@@ -6,8 +6,15 @@ using System.Text;
 
 namespace OnlineCalculatorApp
 {
+    /// <summary>
+    /// Operator factory calss
+    /// </summary>
     public static class OperatorFactory
     {
+        /// <summary>
+        /// Get all operators
+        /// </summary>
+        /// <returns>List of operators</returns>
         public static List<Operator> GetAllOperators()
         {
 
@@ -30,6 +37,13 @@ namespace OnlineCalculatorApp
             else
                 return null;
         }
+        /// <summary>
+        /// Get operator object based on input char and operands.
+        /// </summary>
+        /// <param name="operatorToken">The operator character.</param>
+        /// <param name="leftOperand">The left operand.</param>
+        /// <param name="rightOperand">The right operand.</param>
+        /// <returns></returns>
         public static Operator GetOperator(char operatorToken, long leftOperand, long rightOperand)
         {
 
@@ -53,6 +67,14 @@ namespace OnlineCalculatorApp
                 return null; 
         }
 
+        /// <summary>
+        /// Get operator from list of available operator based on input char and operands.
+        /// </summary>
+        /// <param name="listOperators">The list of operators</param>
+        /// <param name="operatorToken">The operator character.</param>
+        /// <param name="leftOperand">The left operand.</param>
+        /// <param name="rightOperand">The right operand.</param>
+        /// <returns></returns>
         public static Operator GetOperator(List<Operator> listOperators, char operatorToken, long leftOperand, long rightOperand)
         {
 

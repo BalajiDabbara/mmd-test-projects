@@ -4,6 +4,9 @@ using System.Text;
 
 namespace OnlineCalculatorApp
 {
+    /// <summary>
+    /// Error messages.
+    /// </summary>
     public static class ErrorMessages
     {
         public static string ExpressionEvaluationSuccess = "Hello, {0}. Your input expression is successfully evaluated. Result of {1} is : {2}";

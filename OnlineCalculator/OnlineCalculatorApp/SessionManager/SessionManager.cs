@@ -4,6 +4,9 @@ using System.Text;
 
 namespace OnlineCalculatorApp
 {
+    /// <summary>
+    /// The SessionManager.
+    /// </summary>
     class SessionManager : ISessionManager
     {
         private static SessionManager sessionInstance = null;
@@ -11,11 +14,17 @@ namespace OnlineCalculatorApp
         private Dictionary<string, CalculatorMemory> UserSessions;
         public static string UserId { get; set; }
 
+        /// <summary>
+        /// The constructor.
+        /// </summary>
         SessionManager()
         {
             UserSessions = new Dictionary<string, CalculatorMemory>();
         }
-
+        
+        /// <summary>
+        /// Singleton instance of SessionManager.
+        /// </summary>
         public static SessionManager Instance
         {
             get
@@ -31,6 +40,11 @@ namespace OnlineCalculatorApp
             }
         }
 
+        /// <summary>
+        /// Get CalculatorMemory from user session.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns>CalculatorMemory object</returns>
         public CalculatorMemory GetSessionData(string userId)
         {
             if (UserSessions.ContainsKey(userId))
@@ -39,6 +53,11 @@ namespace OnlineCalculatorApp
                 return null;
         }
 
+        /// <summary>
+        /// Update user session
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="sessionData"></param>
         public void UpdateSessionData(string userId, CalculatorMemory sessionData)
         {
             UserSessions[userId] = sessionData;

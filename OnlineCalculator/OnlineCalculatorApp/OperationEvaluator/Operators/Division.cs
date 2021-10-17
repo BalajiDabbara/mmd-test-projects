@@ -4,6 +4,9 @@ using System.Text;
 
 namespace OnlineCalculatorApp
 {
+    /// <summary>
+    /// The Division operator
+    /// </summary>
     public class Division : Operator
     {
         public override char OperatorChar

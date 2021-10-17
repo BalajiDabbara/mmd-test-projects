@@ -4,6 +4,9 @@ using System.Text;
 
 namespace OnlineCalculatorApp
 {
+    /// <summary>
+    /// The Multiplication operator.
+    /// </summary>
     public class Multiplication : Operator
     {
         public override char OperatorChar

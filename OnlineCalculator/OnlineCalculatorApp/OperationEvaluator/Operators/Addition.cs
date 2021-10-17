@@ -4,6 +4,9 @@ using System.Text;
 
 namespace OnlineCalculatorApp
 {
+    /// <summary>
+    /// The Addition operator
+    /// </summary>
     public class Addition : Operator
     {
         public override char OperatorChar

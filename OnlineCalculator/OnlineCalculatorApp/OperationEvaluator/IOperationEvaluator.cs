@@ -4,6 +4,9 @@ using System.Text;
 
 namespace OnlineCalculatorApp
 {
+    /// <summary>
+    /// The operation evaluator interface.
+    /// </summary>
     interface IOperationEvaluator
     {
         long Add(long operand1, long operand2);
