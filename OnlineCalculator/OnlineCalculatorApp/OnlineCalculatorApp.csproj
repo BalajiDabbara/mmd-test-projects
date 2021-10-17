@@ -5,6 +5,9 @@
     <RootNamespace>online_calculator_app</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="..\Online Calculator System Design.docx" Link="DesignDocuments\Online Calculator System Design.docx" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.13" />
   </ItemGroup>
   <ItemGroup>
