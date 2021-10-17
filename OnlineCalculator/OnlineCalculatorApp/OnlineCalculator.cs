@@ -75,6 +75,13 @@ namespace OnlineCalculatorApp
             return new OkObjectResult(responseMessage);
         }
 
+        /// <summary>
+        /// Returns the calculator object.
+        /// </summary>
+        /// <param name="calculatorType">The calculator type.</param>
+        /// <param name="userName">The user name.</param>
+        /// <param name="sessionId">The session id</param>
+        /// <returns>The SimpleCalculator object</returns>
         private static OnlineCalculatorBase GetCalculator(CalculatorType calculatorType, string userName, string sessionId)
         {
             CalculatorMemory calcMemory = new CalculatorMemory();
@@ -91,6 +98,7 @@ namespace OnlineCalculatorApp
                     onlineCalculatorFactory = new SimpleOnlineCalculatorFactory(expressionEvaluator, memoryManager, sessionManager, userContext);
                     break;
                 case CalculatorType.Advanced:
+                    // To be extended for advanced operations.
                     break;
             }
 
