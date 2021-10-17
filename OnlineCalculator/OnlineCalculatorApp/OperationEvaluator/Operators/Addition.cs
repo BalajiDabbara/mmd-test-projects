@@ -16,11 +16,18 @@ namespace OnlineCalculatorApp
                 return Constants.PLUS;
             }
         }
-        public override int OperatorPrecedence
+        public override OperationPrecedence OperatorPrecedence
         {
             get
             {
-                return (int)OperationPrecedence.Addition;
+                return OperationPrecedence.Addition;
+            }
+        }
+        public override OperatorType OperatorType
+        {
+            get
+            {
+                return OperatorType.Binary;
             }
         }
         public long LeftOperand { get; set; }
@@ -28,7 +35,7 @@ namespace OnlineCalculatorApp
         public long RightOperand { get; set; }
 
         public long Result { get; set; }
-
+       
         public Addition()
         {
         }

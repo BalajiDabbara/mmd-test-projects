@@ -16,13 +16,22 @@ namespace OnlineCalculatorApp
                 return Constants.MINUS;
             }
         }
-        public override int OperatorPrecedence
+        public override OperationPrecedence OperatorPrecedence
         {
             get
             {
-                return (int)OperationPrecedence.Subtraction;
+                return OperationPrecedence.Subtraction;
             }
         }
+
+        public override OperatorType OperatorType
+        {
+            get
+            {
+                return OperatorType.Binary;
+            }
+        }
+
         public long LeftOperand { get; set; }
 
         public long RightOperand { get; set; }

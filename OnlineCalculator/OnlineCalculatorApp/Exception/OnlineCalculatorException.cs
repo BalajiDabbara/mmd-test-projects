@@ -7,20 +7,25 @@ namespace OnlineCalculatorApp
     /// <summary>
     /// OnlineAppCalculatorException class
     /// </summary>
-    public class OnlineCalculatorException : System.Exception
+    /// 
+    [Serializable]
+    public class OnlineCalculatorException : Exception
     {
-        public static string message;
-        public OnlineCalculatorException() : base(message: message)
+        public string ErrorMessage { get; set; }
+        public OnlineCalculatorException() : base()
         {
-
         }
+        public OnlineCalculatorException(string message) : base(message: message)
+        {
+            ErrorMessage = message;
+        }
+        public OnlineCalculatorException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
+
+        protected OnlineCalculatorException(System.Runtime.Serialization.SerializationInfo info,
+           System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
     }
 
-    /// <summary>
-    /// Invalid expression exception
-    /// </summary>
-    public class InvlalidExpressionException : OnlineCalculatorException
-    {
 
-    }
 }

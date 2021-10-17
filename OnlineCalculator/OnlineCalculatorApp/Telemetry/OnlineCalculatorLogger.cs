@@ -3,26 +3,16 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace OnlineCalculatorApp.Tests
+namespace OnlineCalculatorApp
 {
     /// <summary>
-    /// The ListLogger class
+    /// The OnlineCalculatorLogger class
     /// </summary>
-    public class ListLogger : ILogger
+    class OnlineCalculatorLogger : ILogger
     {
-        public IList<string> Logs;
-
-        public IDisposable BeginScope<TState>(TState state) => NullScope.Instance;
+        public IDisposable BeginScope<TState>(TState state) => default;
 
         public bool IsEnabled(LogLevel logLevel) => false;
-
-        /// <summary>
-        /// ListLogger contructor
-        /// </summary>
-        public ListLogger()
-        {
-            this.Logs = new List<string>();
-        }
 
         /// <summary>
         /// Adds log message to the logs list
@@ -39,8 +29,10 @@ namespace OnlineCalculatorApp.Tests
                                 Exception exception,
                                 Func<TState, Exception, string> formatter)
         {
-            string message = formatter(state, exception);
-            this.Logs.Add(message);
+            if (!IsEnabled(logLevel))
+            {
+                return;
+            }
         }
     }
 }

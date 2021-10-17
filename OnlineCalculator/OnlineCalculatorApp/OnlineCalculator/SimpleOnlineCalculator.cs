@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -14,6 +15,7 @@ namespace OnlineCalculatorApp
         private ISessionManager sessionManager;
         private IMemoryManager memoryManager;
         private IUserContext userContext;
+        private ILogger logger;
 
         /// <summary>
         /// The CalculatorType
@@ -91,6 +93,22 @@ namespace OnlineCalculatorApp
         }
 
         /// <summary>
+        /// The UserContext
+        /// </summary>
+        public override ILogger Logger
+        {
+            get
+            {
+                return logger;
+            }
+
+            set
+            {
+                value = logger;
+            }
+        }
+
+        /// <summary>
         /// The SimpleOnlineCalculator constructor
         /// </summary>
         /// <param name="expressionEval">Teh expression evaluator.</param>
@@ -101,13 +119,15 @@ namespace OnlineCalculatorApp
                 (IExpressionEvaluator expressionEval,
                 IMemoryManager memoryManager,
                 ISessionManager sessionManager,
-                IUserContext userContext)
+                IUserContext userContext,
+                ILogger logger)
         {
             this.calculatorType = CalculatorType.Simple;
             this.expressionEvaluator = expressionEval;
             this.sessionManager = sessionManager;
             this.memoryManager = memoryManager;
             this.userContext = userContext;
+            this.logger = logger;
         }
 
         /// <summary>
@@ -117,12 +137,14 @@ namespace OnlineCalculatorApp
         /// <returns></returns>
         public override long Eval(string infixExpression)
         {
+            logger.LogInformation("Eval() : Evaluation of infix expression is started.");
             string userId = userContext.UserName;
             CalculatorMemory calcMemory = sessionManager.GetSessionData(userId);
             long memoryResult = memoryManager.RecallMemory(calcMemory);
             long result = expressionEvaluator.EvaluateInfixExpression(infixExpression, memoryResult);
             calcMemory = memoryManager.UpdateMemory(result);
             sessionManager.UpdateSessionData(userId, calcMemory);
+            logger.LogInformation("Eval() : Evaluation of infix expression is ended.");
             return result;
         }
     }

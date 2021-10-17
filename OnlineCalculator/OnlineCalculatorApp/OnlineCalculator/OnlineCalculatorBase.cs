@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -14,6 +15,7 @@ namespace OnlineCalculatorApp
         public abstract ISessionManager SessionManager { get; set; }
         public abstract IMemoryManager MemoryManager { get; set; }
         public abstract IUserContext UserContext { get; set; }
+        public abstract ILogger Logger { get; set; }
         public abstract long Eval(string infixExpression);
     }
 }

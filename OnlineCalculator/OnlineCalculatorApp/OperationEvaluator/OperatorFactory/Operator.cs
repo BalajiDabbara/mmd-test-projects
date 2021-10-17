@@ -17,7 +17,12 @@ namespace OnlineCalculatorApp
         /// <summary>
         /// The operation precedence.
         /// </summary>
-        public abstract int OperatorPrecedence { get; }
+        public abstract OperationPrecedence OperatorPrecedence { get; }
+
+        /// <summary>
+        /// The operation type.
+        /// </summary>
+        public abstract OperatorType OperatorType { get; }
 
         /// <summary>
         /// Execute operation.

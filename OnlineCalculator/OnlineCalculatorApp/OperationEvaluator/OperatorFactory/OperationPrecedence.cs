@@ -7,8 +7,9 @@ namespace OnlineCalculatorApp
     /// <summary>
     /// The Operation precedence.
     /// </summary>
-    enum OperationPrecedence
+    public enum OperationPrecedence
     {
+        Default = 0,
         Addition = 0,
         Subtraction = 0,
         Multiplication = 1,

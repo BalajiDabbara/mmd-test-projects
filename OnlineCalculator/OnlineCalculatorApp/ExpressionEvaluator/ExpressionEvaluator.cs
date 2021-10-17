@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ namespace OnlineCalculatorApp
         private OperationEvaluator operationEvaluator = new OperationEvaluator();
         ExprTreeNode operatorNode, leftOperandNode, rightOperandNode;
         List<Operator> listOperators = new List<Operator>();
+        private ILogger logger;
 
         /// <summary>
         /// ExpressionEvaluator constructo.
@@ -21,7 +23,14 @@ namespace OnlineCalculatorApp
         {
             listOperators = OperatorFactory.GetAllOperators();
         }
-        private int GetOperatorPrecedence(char inputChar)
+
+        public ExpressionEvaluator(ILogger logger)
+        {
+            this.logger = logger;
+            listOperators = OperatorFactory.GetAllOperators();
+
+        }
+        private OperationPrecedence GetOperatorPrecedence(char inputChar)
         {
             Operator arOperator = listOperators.FirstOrDefault(op => op.OperatorChar == inputChar);
             return arOperator != null ? arOperator.OperatorPrecedence : 0;
@@ -52,6 +61,31 @@ namespace OnlineCalculatorApp
             nodeStack.Push(new ExprTreeNode(memoryResult.ToString()));
         }
 
+        private bool IsStackOperatorPrecedenceGreaterOrEqual(char stackOperatorChar, char currentOperatorChar)
+        {
+            Operator stackOperator = listOperators.FirstOrDefault(op => op.OperatorChar == stackOperatorChar);
+            Operator currentOperator = listOperators.FirstOrDefault(op => op.OperatorChar == currentOperatorChar);
+            int compareResult = stackOperator.OperatorPrecedence.CompareTo(currentOperator.OperatorPrecedence);
+
+            return (compareResult > 0 || compareResult == 0 ) ? true : false;
+        }
+
+        private void ConstructExprTreeNode(Stack<ExprTreeNode> operandStack, Stack<char> operatorStack)
+        {
+            operatorNode = new ExprTreeNode(CalculatorHelper.GetStringFromChar(operatorStack.Peek()));
+            operatorStack.Pop();
+
+            rightOperandNode = operandStack.Peek();
+            operandStack.Pop();
+
+            leftOperandNode = operandStack.Peek();
+            operandStack.Pop();
+
+            operatorNode.left = leftOperandNode;
+            operatorNode.right = rightOperandNode;
+
+            operandStack.Push(operatorNode);
+        }
         /// <summary>
         /// Processs closing paranthesis.
         /// </summary>
@@ -61,21 +95,8 @@ namespace OnlineCalculatorApp
         {
             while (operatorStack.Count != 0 && !CalculatorHelper.IsOpeningParenthesis(operatorStack.Peek()))
             {
-                operatorNode = new ExprTreeNode(CalculatorHelper.GetStringFromChar(operatorStack.Peek()));
-                operatorStack.Pop();
-
-                rightOperandNode = operandStack.Peek();
-                operandStack.Pop();
-
-                leftOperandNode = operandStack.Peek();
-                operandStack.Pop();
-
-                operatorNode.left = leftOperandNode;
-                operatorNode.right = rightOperandNode;
-
-                operandStack.Push(operatorNode);
+                ConstructExprTreeNode(operandStack, operatorStack);
             }
-
             operatorStack.Pop();
         }
 
@@ -87,22 +108,11 @@ namespace OnlineCalculatorApp
         /// <param name="operatorStack">The operator stack</param>
         private void EvaluateOperator(char arOperator, Stack<ExprTreeNode> operandStack, Stack<char> operatorStack)
         {
-            while (operatorStack.Count != 0 && !CalculatorHelper.IsOpeningParenthesis(operatorStack.Peek())
-                          && GetOperatorPrecedence(operatorStack.Peek()) >= GetOperatorPrecedence(arOperator))
+            while (operatorStack.Count != 0 && !CalculatorHelper.IsOpeningParenthesis(operatorStack.Peek()) 
+                    && IsStackOperatorPrecedenceGreaterOrEqual(operatorStack.Peek(), arOperator))
+                          //&& GetOperatorPrecedence(operatorStack.Peek()) >= GetOperatorPrecedence(arOperator))
             {
-                operatorNode = new ExprTreeNode(CalculatorHelper.GetStringFromChar(operatorStack.Peek()));
-                operatorStack.Pop();
-
-                rightOperandNode = operandStack.Peek();
-                operandStack.Pop();
-
-                leftOperandNode = operandStack.Peek();
-                operandStack.Pop();
-
-                operatorNode.left = leftOperandNode;
-                operatorNode.right = rightOperandNode;
-
-                operandStack.Push(operatorNode);
+                ConstructExprTreeNode(operandStack, operatorStack);
             }
 
             operatorStack.Push(arOperator);
@@ -116,43 +126,54 @@ namespace OnlineCalculatorApp
         /// <returns>Expression tree root.</returns>
         private ExprTreeNode BuildExpressionTree(string infixExpr, long memoryResult)
         {
+            logger.LogInformation("BuildExpressionTree() : Start");
             Stack<ExprTreeNode> operandStack = new Stack<ExprTreeNode>();
             Stack<char> operatorStack = new Stack<char>();
 
-
+            // Scan the input expression and build expression tree.
             for (int idx = 0; idx < infixExpr.Length; idx++)
             {
+                // If character is whitespace move forward.
                 if (CalculatorHelper.IsOpeningWhiteSpace(infixExpr[idx]))
                 {
                     continue;
                 }
 
+                // If character is opening paranthesis push it into operator stack
                 if (CalculatorHelper.IsOpeningParenthesis(infixExpr[idx]))
                 {
                     operatorStack.Push(infixExpr[idx]);
                 }
                 else if (CalculatorHelper.IsMemoryRecall(infixExpr[idx]))
                 {
+                    // If character is memory recall push the number into operand stack
                     EvaluateMemoryResult(infixExpr, memoryResult, operandStack);
                 }
                 else if (CalculatorHelper.IsNumber(infixExpr[idx]))
                 {
+                    // If character is number means it is begginig of number.
+                    // Hence, get the full number and push the number into operand stack
                     idx = EvaluateOperandNumber(infixExpr, idx, operandStack);
                 }
                 else if (CalculatorHelper.IsClosingParenthesis(infixExpr[idx]))
                 {
+                    // If character is closing paranthesis then process the operator stack to construct a expression tree and push it to operand stack.
+                    // until opening paranthesis is encountere or stack is empty.
                     EvaluateClosingParanthesis(operandStack, operatorStack);
                 }
                 else if (CalculatorHelper.IsOperator(infixExpr[idx]))
                 {
+                    // If character is operator then process the operator stack and construct expression tree
+                    // until less precedence operator is encountered or stack is empty.
                     EvaluateOperator(infixExpr[idx], operandStack, operatorStack);
                 }
                 else
                 {
-                    throw new Exception("Exception occurred. Please verify the input expression.");
+                    throw new InvlalidExpressionException("Please verify the input expression.");
                 }
 
             }
+            logger.LogInformation("BuildExpressionTree() : End");
             return operandStack.Peek();
         }
 
@@ -163,6 +184,8 @@ namespace OnlineCalculatorApp
         /// <returns>Evaluated result</returns>
         private long EvaluateExpressionTree(ExprTreeNode exprTree)
         {
+            logger.LogInformation("EvaluateExpressionTree() : Start");
+
             long result = 0;
 
             if (exprTree != null)
@@ -181,6 +204,8 @@ namespace OnlineCalculatorApp
                 result = arOperator.ExecuteOperation();
             }
 
+            logger.LogInformation("EvaluateExpressionTree() : End");
+            logger.LogInformation("EvaluateInfixExpression() : End");
             return result;
         }
 
@@ -192,6 +217,7 @@ namespace OnlineCalculatorApp
         /// <returns>Evaluated result</returns>
         public long EvaluateInfixExpression(string infixExpression, long memoryResult)
         {
+            logger.LogInformation("EvaluateInfixExpression() : Start");
             ExprTreeNode exprTree = BuildExpressionTree(infixExpression, memoryResult);
             return EvaluateExpressionTree(exprTree);
         }

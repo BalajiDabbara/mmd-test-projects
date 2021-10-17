@@ -28,15 +28,19 @@ namespace OnlineCalculatorApp
         {
             log.LogInformation("OnlineCalculatorApp function started processiong the request.");
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            return EvaluateUserExpression(requestBody);
+            ILogger logger = GetOnlineCalculatorLogger();
+            logger = logger ?? log;
+
+            return EvaluateUserExpression(requestBody, logger);
         }
 
+       
         /// <summary>
         /// Evaluates the user input expression and return the result.
         /// </summary>
         /// <param name="requestBody">The http request body.</param>
         /// <returns>Action result</returns>
-        private static IActionResult EvaluateUserExpression(string requestBody)
+        private static IActionResult EvaluateUserExpression(string requestBody, ILogger logger)
         {
             string UserName = null;
             dynamic requestBodyObject = JsonConvert.DeserializeObject(requestBody);
@@ -57,14 +61,19 @@ namespace OnlineCalculatorApp
             {
                 try
                 {
-                    OnlineCalculatorBase onlineCalculator = GetCalculator(CalculatorType.Simple, UserName, string.Empty);
+                    OnlineCalculatorBase onlineCalculator = GetCalculator(CalculatorType.Simple, UserName, string.Empty, logger);
                     long result = onlineCalculator.Eval(sanitizedInputInfixExpression);
                     responseMessage = string.Format(ErrorMessages.ExpressionEvaluationSuccess, UserName, inputInfixExpression, result);
+                }
+                catch (OnlineCalculatorException exception)
+                {
+                    responseMessage = string.Format(ErrorMessages.ExpressionEvaluationFailedWithException, UserName, exception.ErrorMessage);
                 }
                 catch (Exception exception)
                 {
                     responseMessage = string.Format(ErrorMessages.ExpressionEvaluationFailedWithException, UserName, exception.Message);
                 }
+               
             }
             else
             {
@@ -82,11 +91,11 @@ namespace OnlineCalculatorApp
         /// <param name="userName">The user name.</param>
         /// <param name="sessionId">The session id</param>
         /// <returns>The SimpleCalculator object</returns>
-        private static OnlineCalculatorBase GetCalculator(CalculatorType calculatorType, string userName, string sessionId)
+        private static OnlineCalculatorBase GetCalculator(CalculatorType calculatorType, string userName, string sessionId, ILogger logger)
         {
             CalculatorMemory calcMemory = new CalculatorMemory();
             SessionManager sessionManager = SessionManager.Instance;
-            IExpressionEvaluator expressionEvaluator = new ExpressionEvaluator();
+            IExpressionEvaluator expressionEvaluator = new ExpressionEvaluator(logger);
             IMemoryManager memoryManager = new MemoryManager(calcMemory);
             IUserContext userContext = new UserContext(userName, sessionId);
 
@@ -95,7 +104,7 @@ namespace OnlineCalculatorApp
             switch(calculatorType)
             {
                 case CalculatorType.Simple:
-                    onlineCalculatorFactory = new SimpleOnlineCalculatorFactory(expressionEvaluator, memoryManager, sessionManager, userContext);
+                    onlineCalculatorFactory = new SimpleOnlineCalculatorFactory(expressionEvaluator, memoryManager, sessionManager, userContext, logger) ;
                     break;
                 case CalculatorType.Advanced:
                     // To be extended for advanced operations.
@@ -104,5 +113,11 @@ namespace OnlineCalculatorApp
 
             return onlineCalculatorFactory.GetCalculator();
         }
+        private static ILogger GetOnlineCalculatorLogger()
+        {
+            // TODO : Return the logger from logger factory as per the selection.
+            return null;
+        }
+
     }
 }
