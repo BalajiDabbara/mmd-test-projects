@@ -14,6 +14,20 @@ Provide system design for an Online Calculator. The Online Calculator should sup
 ## Scope
 To provide design and implementation details on online calculator that can evaluate a simple infix expression and provides basic support for session and memory management. 
 
+# Assumptions
+Following assumptions are considered while designing and implementing the app.
+- Currently, only supports arithmetic operations on integers.
+- Currently, only basic arithmetic operations (+, -, \* and /).
+- Result of the expression will be saved after evaluation.
+- Memory recall will retrieve the result of previously evaluated expression or 0.
+- Although there are expression sanitization and basic validations are present. Perfect input expression would be expected.
+- Supports only basic session management.
+- User authentication is supported only by function keys.
+- Supports only basic telemetry to indicate function start and end events.
+- Supports single letter operations. (+, -, \*, / and R (Memory recall))
+
+
+
 ## Design Diagram
 ### Class Diagram
 The below class diagram is generated using Visual Studio 2019 by Class Designer extension.
@@ -27,7 +41,7 @@ The following code map diagram shows the call interaction and dependency between
 |--|--|
 |Green	|Inheritance|
 |Pink	|Calls|
-|Grey	|Return|
+|Grey	|References|
 |Dotted Green|	Interface|
 
 
@@ -91,7 +105,7 @@ Online Calculator App API functionality can be validated using Postman. The URL 
 | Method |Get |
 | Content Type |JSON |
 | Request Body |`{ "UserName": "Balaji", "InfixExpression": "(((2+2)*4/2+2))*10/5*2*100"}`|
-| Response |Hello, Balaji. Your input expression ((((2+2)*4/2+2))*10/5*2*100) has been evaluated to : 4000. |
+| Response |Hello, Balaji. Your input expression ((((2+2)\*4/2+2))\*10/5\*2\*100) has been evaluated to : 4000. |
 
 The results can be found as shown below.
 #### Success

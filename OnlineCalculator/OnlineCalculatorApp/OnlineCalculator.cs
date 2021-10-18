@@ -31,6 +31,8 @@ namespace OnlineCalculatorApp
             ILogger logger = GetOnlineCalculatorLogger();
             logger = logger ?? log;
 
+            // TO DO : Dependency injection 
+            // Implement IServiceProvider instance, as a container to registered services.
             return EvaluateUserExpression(requestBody, logger);
         }
 
@@ -94,7 +96,7 @@ namespace OnlineCalculatorApp
         private static OnlineCalculatorBase GetCalculator(CalculatorType calculatorType, string userName, string sessionId, ILogger logger)
         {
             CalculatorMemory calcMemory = new CalculatorMemory();
-            SessionManager sessionManager = SessionManager.Instance;
+            ISessionManager sessionManager = SessionManager.Instance;
             IExpressionEvaluator expressionEvaluator = new ExpressionEvaluator(logger);
             IMemoryManager memoryManager = new MemoryManager(calcMemory);
             IUserContext userContext = new UserContext(userName, sessionId);

@@ -66,8 +66,7 @@ namespace OnlineCalculatorApp
             Operator stackOperator = listOperators.FirstOrDefault(op => op.OperatorChar == stackOperatorChar);
             Operator currentOperator = listOperators.FirstOrDefault(op => op.OperatorChar == currentOperatorChar);
             int compareResult = stackOperator.OperatorPrecedence.CompareTo(currentOperator.OperatorPrecedence);
-
-            return (compareResult > 0 || compareResult == 0 ) ? true : false;
+            return compareResult >= 0;
         }
 
         private void ConstructExprTreeNode(Stack<ExprTreeNode> operandStack, Stack<char> operatorStack)
@@ -110,7 +109,6 @@ namespace OnlineCalculatorApp
         {
             while (operatorStack.Count != 0 && !CalculatorHelper.IsOpeningParenthesis(operatorStack.Peek()) 
                     && IsStackOperatorPrecedenceGreaterOrEqual(operatorStack.Peek(), arOperator))
-                          //&& GetOperatorPrecedence(operatorStack.Peek()) >= GetOperatorPrecedence(arOperator))
             {
                 ConstructExprTreeNode(operandStack, operatorStack);
             }
@@ -151,7 +149,7 @@ namespace OnlineCalculatorApp
                 }
                 else if (CalculatorHelper.IsNumber(infixExpr[idx]))
                 {
-                    // If character is number means it is begginig of number.
+                    // If the character is number means it is beginnig of the number.
                     // Hence, get the full number and push the number into operand stack
                     idx = EvaluateOperandNumber(infixExpr, idx, operandStack);
                 }

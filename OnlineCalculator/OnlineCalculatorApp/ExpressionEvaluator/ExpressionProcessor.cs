@@ -55,11 +55,8 @@ namespace OnlineCalculatorApp
         public bool ValidateExpression(string inputString)
         {
 
-            if (string.IsNullOrEmpty(inputString))
-            {
-                return false;
-            }
-            else if (!AreParanthesisBalanced(inputString))
+            if (string.IsNullOrEmpty(inputString) || 
+                !AreParanthesisBalanced(inputString))
             {
                 return false;
             }
