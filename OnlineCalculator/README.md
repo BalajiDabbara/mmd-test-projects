@@ -1,4 +1,7 @@
+
 # Online Calculator Function App
+
+[[_TOC_]]
 
 ## Purpose
 The purpose of this document is to describe system design and implementation details for Online Calculator.
