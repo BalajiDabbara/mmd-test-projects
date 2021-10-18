@@ -23,7 +23,7 @@ namespace OnlineCalculatorApp
         /// <returns>Action result</returns>
         [FunctionName("OnlineCalculator_Evaluate")]
         public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
         {
             log.LogInformation("OnlineCalculatorApp function started processiong the request.");

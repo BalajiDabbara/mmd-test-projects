@@ -87,7 +87,8 @@ Online Calculator App API functionality can be validated using Postman. The URL 
 
 |**Parameter** |**Input**|
 |--|--|
-| Function App URL| [Deployed Function App](https://onlinecalculatorapp.azurewebsites.net/api/OnlineCalculator_Evaluate)|
+| Request URL| [Deployed Function App](https://onlinecalculatorapp.azurewebsites.net/api/OnlineCalculator_Evaluate)|
+| Method |Get |
 | Content Type |JSON |
 | Request Body |`{ "UserName": "Balaji", "InfixExpression": "(((2+2)*4/2+2))*10/5*2*100"}`|
 | Response |Hello, Balaji. Your input expression ((((2+2)*4/2+2))*10/5*2*100) has been evaluated to : 4000. |
@@ -108,5 +109,9 @@ Online Calculator App has following limitations.
 - This is not extendable to double, float. Should be impleted with Generics.
 - Can't support multiple types of braces are not supported like {, [ etc.
 - Can't support  multiple expression validations.
+- User authentication process is not implemented
+- SessionState providers are not supported.
+- Not validated for reliability.
+- Not validated for workload.
 
 
