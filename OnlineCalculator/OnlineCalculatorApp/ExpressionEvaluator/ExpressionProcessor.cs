@@ -22,6 +22,9 @@ namespace OnlineCalculatorApp
 
             for (int i = 0; i < inputString.Length; i++)
             {
+                if (inputString[0] == Constants.CLOSE_PARANTHESIS)
+                    return false;
+
                 if(CalculatorHelper.IsOpeningParenthesis(inputString[i]))
                 {
                     openCount++;
@@ -30,6 +33,7 @@ namespace OnlineCalculatorApp
                 {
                     closedCount++;
                 }
+
             }
 
             return (openCount == closedCount)  ? true : false;
