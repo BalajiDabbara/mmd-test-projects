@@ -22,6 +22,14 @@ The below class diagram is generated using Visual Studio 2019 by Class Designer 
 ### Code Map Diagram
 The following code map diagram shows the call interaction and dependency between different objects of the application.
 
+|**Arrow Color**| **Category**|
+|--|--|
+|Green	|Inheritance|
+|Pink	|Calls|
+|Grey	|Return|
+|Dotted Green|	Interface|
+
+
 ![alt text](https://github.com/BalajiDabbara/mmd-test-projects/blob/main/OnlineCalculator/OnlineCalculatorApp/Images/OnlineCalculatorApp_CodeMap_Diagram.png?raw=true)
 
 ### Sequence Diagram
@@ -40,6 +48,21 @@ Follow the below steps to run the app
 5)	Run the App (Ctrl + F5)
 6)	Local function app will be started.
 7)	Test using Postman or any other API tester.
+
+## Extensibility
+This app is designed which can be extended further in the future. The following operations are not supported in the current implementation and can be extended.
+- Implemented to be extended to different type of operators.
+- Advanced calculator.
+- Custom logger for telemetry logging.
+- Unary operator
+- Double digit operators.
+- User level authentication.
+- On-demand Save
+- Multi-level Save.
+- Dependence injection container.
+- Durable function app.
+- Memory clear.
+- Advanced Session management.
 
 ## Deployment
 The Online Calculator App function app is deployed in Azure cloud as a Function App.
@@ -77,3 +100,12 @@ The results can be found as shown below.
 
 
 ![alt text](https://github.com/BalajiDabbara/mmd-test-projects/blob/main/OnlineCalculator/OnlineCalculatorApp/Images/Evaluate_Failure.PNG?raw=true)
+
+## Limitations
+Online Calculator App has following limitations.
+- Two or more letter operators are not supported (e.g.: ++, --, log, sin, cos).
+- This is not extendable to double, float. Should be impleted with Generics.
+- Can't support multiple types of braces are not supported like {, [ etc.
+- Can't support  multiple expression validations.
+
+
