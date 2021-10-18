@@ -26,7 +26,7 @@ namespace OnlineCalculatorApp
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
         {
-            log.LogInformation("OnlineCalculatorApp function started processiong the request.");
+            log.LogInformation("OnlineCalculatorApp function is started processing the request.");
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             ILogger logger = GetOnlineCalculatorLogger();
             logger = logger ?? log;
