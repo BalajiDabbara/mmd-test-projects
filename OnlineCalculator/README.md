@@ -95,6 +95,9 @@ Following are the different test scenarios added for the function app.
 5)	ValidateMemoryRecall
 6)	ValidateOperationOnMemoryRecall
 7)	ValidateMemoryRecallForDifferentUsers
+8)  ValidateSupportForMaximumLongValue
+9)  ValidateSupportForMinimumLongValue
+10) ValidateSupportSingleNegativeNumber
 
 ### Manual Verification
 Online Calculator App API functionality can be validated using Postman. The URL and request body to be passed for the request should be as shown below.
