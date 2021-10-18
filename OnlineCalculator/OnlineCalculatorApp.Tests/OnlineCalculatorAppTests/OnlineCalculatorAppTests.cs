@@ -165,7 +165,6 @@ namespace OnlineCalculatorApp.Tests
 
             // Assert
             Assert.Equal(string.Format(ErrorMessages.ExpressionEvaluationSuccess, userName, infixExpression, expectedResult), response.Value);
-
         }
 
         /// <summary>
@@ -185,8 +184,27 @@ namespace OnlineCalculatorApp.Tests
 
             // Assert
             Assert.Equal(string.Format(ErrorMessages.ExpressionEvaluationSuccess, userName, infixExpression, expectedResult), response.Value);
-
         }
+
+        /// <summary>
+        /// Validating support for negative number.
+        /// </summary>
+        [Fact]
+        public async void ValidateSupportSingleNegativeNumber()
+        {
+            // Setup
+            string userName = "Balaji";
+            string infixExpression = "-10";
+            long expectedResult = -10;
+
+            // Act
+            var request = OnlineCalculatorAppTestFactory.CreateHttpRequest(userName, infixExpression);
+            var response = (OkObjectResult)await OnlineCalculatorApp.OnlineCalculator.Run(request, logger);
+
+            // Assert
+            Assert.Equal(string.Format(ErrorMessages.ExpressionEvaluationSuccess, userName, infixExpression, expectedResult), response.Value);
+        }
+
         /// <summary>
         /// Validate the memory recall functionality for different users.
         /// </summary>
