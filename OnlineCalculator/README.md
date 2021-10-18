@@ -14,7 +14,7 @@ Provide system design for an Online Calculator. The Online Calculator should sup
 ## Scope
 To provide design and implementation details on online calculator that can evaluate a simple infix expression and provides basic support for session and memory management. 
 
-# Assumptions
+## Assumptions
 Following assumptions are considered while designing and implementing the app.
 - Currently, only supports arithmetic operations on integers.
 - Currently, only basic arithmetic operations (+, -, \* and /).
