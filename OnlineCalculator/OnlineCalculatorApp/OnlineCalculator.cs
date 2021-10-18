@@ -32,11 +32,11 @@ namespace OnlineCalculatorApp
             logger = logger ?? log;
 
             // TO DO : Dependency injection 
-            // Implement IServiceProvider instance, as a container to registered services.
+            // Implement IServiceProvider instance and a container to registered services.
             return EvaluateUserExpression(requestBody, logger);
         }
 
-       
+
         /// <summary>
         /// Evaluates the user input expression and return the result.
         /// </summary>
@@ -45,43 +45,42 @@ namespace OnlineCalculatorApp
         private static IActionResult EvaluateUserExpression(string requestBody, ILogger logger)
         {
             string UserName = null;
-            dynamic requestBodyObject = JsonConvert.DeserializeObject(requestBody);
-            UserName = UserName ?? requestBodyObject?.UserName;
-            string inputInfixExpression = requestBodyObject?.InfixExpression;
-            IExpressionProcessor expressionProcessor = new ExpressionProcessor();
-            string sanitizedInputInfixExpression = expressionProcessor.SanitizeExpression(inputInfixExpression);
-
             string responseMessage;
 
-            if (string.IsNullOrEmpty(UserName))
+            try
             {
-                responseMessage = ErrorMessages.UserNameEmpty;
-                return new OkObjectResult(responseMessage);
-            }
+                dynamic requestBodyObject = JsonConvert.DeserializeObject(requestBody);
+                UserName = UserName ?? requestBodyObject?.UserName;
+                string inputInfixExpression = requestBodyObject?.InfixExpression;
+                IExpressionProcessor expressionProcessor = new ExpressionProcessor();
+                string sanitizedInputInfixExpression = expressionProcessor.SanitizeExpression(inputInfixExpression);
 
-            if (expressionProcessor.ValidateExpression(sanitizedInputInfixExpression))
-            {
-                try
+                if (string.IsNullOrEmpty(UserName))
                 {
+                    responseMessage = ErrorMessages.UserNameEmpty;
+                    return new OkObjectResult(responseMessage);
+                }
+
+                if (expressionProcessor.ValidateExpression(sanitizedInputInfixExpression))
+                {
+
                     OnlineCalculatorBase onlineCalculator = GetCalculator(CalculatorType.Simple, UserName, string.Empty, logger);
                     long result = onlineCalculator.Eval(sanitizedInputInfixExpression);
                     responseMessage = string.Format(ErrorMessages.ExpressionEvaluationSuccess, UserName, inputInfixExpression, result);
                 }
-                catch (OnlineCalculatorException exception)
+                else
                 {
-                    responseMessage = string.Format(ErrorMessages.ExpressionEvaluationFailedWithException, UserName, exception.ErrorMessage);
+                    responseMessage = string.Format(ErrorMessages.ExpressionEvaluationFailedWithoutException, UserName);
                 }
-                catch (Exception exception)
-                {
-                    responseMessage = string.Format(ErrorMessages.ExpressionEvaluationFailedWithException, UserName, exception.Message);
-                }
-               
             }
-            else
+            catch (OnlineCalculatorException exception)
             {
-                responseMessage = string.Format(ErrorMessages.ExpressionEvaluationFailedWithoutException, UserName);
+                responseMessage = string.Format(ErrorMessages.ExpressionEvaluationFailedWithException, UserName, exception.ErrorMessage);
             }
-
+            catch (Exception exception)
+            {
+                responseMessage = string.Format(ErrorMessages.ExpressionEvaluationFailedWithException, UserName, exception.Message);
+            }
 
             return new OkObjectResult(responseMessage);
         }
@@ -103,10 +102,10 @@ namespace OnlineCalculatorApp
 
             OnlineCalculatorFactory onlineCalculatorFactory = null;
 
-            switch(calculatorType)
+            switch (calculatorType)
             {
                 case CalculatorType.Simple:
-                    onlineCalculatorFactory = new SimpleOnlineCalculatorFactory(expressionEvaluator, memoryManager, sessionManager, userContext, logger) ;
+                    onlineCalculatorFactory = new SimpleOnlineCalculatorFactory(expressionEvaluator, memoryManager, sessionManager, userContext, logger);
                     break;
                 case CalculatorType.Advanced:
                     // To be extended for advanced operations.

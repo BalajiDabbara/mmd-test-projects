@@ -43,6 +43,8 @@ namespace OnlineCalculatorApp
         public string SanitizeExpression(string inputExpression)
         {
             inputExpression = inputExpression.Replace(" ", "");
+            if (inputExpression[0] == Constants.MINUS)
+                inputExpression = "0" + inputExpression;
             inputExpression = "(" + inputExpression + ")";
             return inputExpression;
         }

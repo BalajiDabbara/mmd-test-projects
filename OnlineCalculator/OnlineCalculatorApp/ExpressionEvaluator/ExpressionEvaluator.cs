@@ -45,7 +45,7 @@ namespace OnlineCalculatorApp
         /// <returns></returns>
         private int EvaluateOperandNumber(string expr, int idx, Stack<ExprTreeNode> nodeStack)
         {
-            int number = 0;
+            long number = 0;
 
             while (idx < expr.Length && CalculatorHelper.IsNumber(expr[idx]))
             {

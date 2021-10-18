@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
 using Xunit;
 
 namespace OnlineCalculatorApp.Tests
@@ -148,6 +149,45 @@ namespace OnlineCalculatorApp.Tests
         }
 
         /// <summary>
+        /// Validating support for minimum long value.
+        /// </summary>
+        [Fact]
+        public async void ValidateSupportForMinimumLongValue()
+        {
+            // Setup
+            string userName = "Balaji";
+            string infixExpression = "-9223372036854775807-1";
+            long expectedResult = Int64.MinValue;
+
+            // Act
+            var request = OnlineCalculatorAppTestFactory.CreateHttpRequest(userName, infixExpression);
+            var response = (OkObjectResult)await OnlineCalculatorApp.OnlineCalculator.Run(request, logger);
+
+            // Assert
+            Assert.Equal(string.Format(ErrorMessages.ExpressionEvaluationSuccess, userName, infixExpression, expectedResult), response.Value);
+
+        }
+
+        /// <summary>
+        /// Validating support for maximum long value.
+        /// </summary>
+        [Fact]
+        public async void ValidateSupportForMaximumLongValue()
+        {
+            // Setup
+            string userName = "Balaji";
+            string infixExpression = "9223372036854775807";
+            long expectedResult = Int64.MaxValue;
+
+            // Act
+            var request = OnlineCalculatorAppTestFactory.CreateHttpRequest(userName, infixExpression);
+            var response = (OkObjectResult)await OnlineCalculatorApp.OnlineCalculator.Run(request, logger);
+
+            // Assert
+            Assert.Equal(string.Format(ErrorMessages.ExpressionEvaluationSuccess, userName, infixExpression, expectedResult), response.Value);
+
+        }
+        /// <summary>
         /// Validate the memory recall functionality for different users.
         /// </summary>
         [Fact]
@@ -201,8 +241,6 @@ namespace OnlineCalculatorApp.Tests
 
             // Assert
             Assert.Equal(string.Format(ErrorMessages.ExpressionEvaluationSuccess, userName, infixExpression, secondUserExpectedMemoryRecallResult), response.Value);
-
-
 
         }
     }
