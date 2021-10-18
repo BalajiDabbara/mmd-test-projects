@@ -8,7 +8,7 @@ The purpose of this document is to describe system design and implementation det
 Provide system design for an Online Calculator. The Online Calculator should support:
 1. Parsing complex arithmetic expressions e.g. (4+2) x 4 / 2.
 2. Should support Memory Save and Recall e.g. <MR> + 3. 
-3. Memory Save should persist across sessions.
+3. Memory save should persist across sessions.
 4. Memory save for one user should not be visible to other users.
  
 ## Scope
