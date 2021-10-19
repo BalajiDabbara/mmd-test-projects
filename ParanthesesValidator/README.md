@@ -1,5 +1,5 @@
 
-# Online Calculator Function App
+# Parentheses Validator.
 
 ## Purpose
 The purpose of this document is to describe system design and implementation details for Longest Valid Parentheses validator.
