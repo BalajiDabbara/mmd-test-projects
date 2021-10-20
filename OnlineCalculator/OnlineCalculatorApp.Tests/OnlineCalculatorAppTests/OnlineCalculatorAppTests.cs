@@ -156,7 +156,7 @@ namespace OnlineCalculatorApp.Tests
         {
             // Setup
             string userName = "Balaji";
-            string infixExpression = "-922337203685477588-1";
+            string infixExpression = "-9223372036854775807-1";
             long expectedResult = Int64.MinValue;
 
             // Act

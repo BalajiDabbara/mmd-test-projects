@@ -18,5 +18,7 @@ namespace OnlineCalculatorApp
         public const char MINUS = '-';
         public const char MULTIPLICATION = '*';
         public const char DIVISION = '/';
+        public const string ALLOWED_INPUTCHARS = @"[^[0-9-/*+R()]]*";
+
     }
 }

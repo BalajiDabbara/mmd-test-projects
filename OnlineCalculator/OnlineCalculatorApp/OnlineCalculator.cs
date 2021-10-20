@@ -26,6 +26,8 @@ namespace OnlineCalculatorApp
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
         {
+            string alloweCharRegEx = Environment.GetEnvironmentVariable("ALLOWED_INPUT_CHARACTERS");
+
             log.LogInformation("OnlineCalculatorApp function is started processing the request.");
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             ILogger logger = GetOnlineCalculatorLogger();

@@ -11,18 +11,15 @@ namespace OnlineCalculatorApp
     /// </summary>
     public class ExpressionProcessor : IExpressionProcessor
     {
+
         /// <summary>
         /// Is valid numbers 
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        private bool IsInputStringHasInValidChars(string input)
+        private bool IsValidCharatersWithParentheses(string input)
         {
-            string alloweCharRegEx = Environment.GetEnvironmentVariable("ALLOWED_INPUT_CHARACTERS");
-
-            // For unit tests purpose, keeping regular expression ([^[0-9-/*+R()]]*) in constants.
-            alloweCharRegEx = string.IsNullOrEmpty(alloweCharRegEx) ? Constants.ALLOWED_INPUTCHARS : alloweCharRegEx;
-            return Regex.IsMatch(input, alloweCharRegEx);
+            return Regex.IsMatch(input, @"^[0-9R()]+$");
         }
         /// <summary>
         /// Validate whether the input expression has balanced paranthesis.
@@ -34,7 +31,7 @@ namespace OnlineCalculatorApp
             Stack<char> openParenthesesStack = new Stack<char>();
             bool isExpressionBalanced = true;
 
-            if (IsInputStringHasInValidChars(inputString))
+            if (!IsValidCharatersWithParentheses(inputString))
                 return false;
 
             for (int i = 0; i < inputString.Length; i++)
@@ -82,7 +79,16 @@ namespace OnlineCalculatorApp
         /// <returns>Returns true if expression is valid otherwise false.</returns>
         public bool ValidateExpression(string inputString)
         {
-            return string.IsNullOrEmpty(inputString) || !AreParanthesisBalanced(inputString) ? false : true;
+
+            if (string.IsNullOrEmpty(inputString) ||
+                !AreParanthesisBalanced(inputString))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }
