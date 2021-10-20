@@ -25,6 +25,10 @@ To provide design and implementation details on parentheses validator that can f
 ## Assumptions
 Following assumptions are considered while designing and implementing the app.
 - Only Parentheses are considered as input.
+- OTher Characters will fail and throw an excpetion.
+
+## Code
+This is developed as a console application in .NET Core using C# language by takingadvantage of Microsoft in-built dependency container. This has simple algorithm that will return the longest length of valid parentheses from a given input string.
 
 
 ## Design Diagram
@@ -63,7 +67,22 @@ Follow the below steps to run the app
 
 
 ## Testing
-ParenthesesValidator is tested by unit tests with MsTest framework and evaluated manually by providing input.
+ParenthesesValidator can be validated manually or can be tested by unit tests with MsTest framework and evaluated manually by providing input.
+
+### Manual Verification
+Please follow below steps to run the conosle application.
+- Clone the code from repo
+- Run the application
+- The application will ask for input
+- Provide the input string with parentheses for e.g : ()()()
+- The longest lenght will be printed on the console.
+- The application will kep on asking for inputs until "exit" is provided.
+- This will allow us to test with multiple input strings.
+
+
+Please find the below screen shot for a sample run.
+
+![alt text](https://github.com/BalajiDabbara/mmd-test-projects/blob/main/ParanthesesValidator/ParenthesesValidator/DesignDocs/ParenthesesValidator_Output.png?raw=true)
 
 ### Unit Tests
 Added unit tests are added in the project 

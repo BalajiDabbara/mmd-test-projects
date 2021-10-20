@@ -9,6 +9,8 @@ namespace ParenthesesValidator
     /// </summary>
     public static class ErrorMessages
     {
-        public static string InvallidInputString = "The input string {0} is invalid.";
+        public static string InvallidInputString = "\nThe input string {0} is invalid.\n";
+        public static string RequestInputString = "\nPLEASE ENTER INPUT STRING.\n";
+        public static string ResultMessage = "\nTHE LONGEST LENGTH OF VALID PARENTHESES {0} IS {1}\n";
     }
 }

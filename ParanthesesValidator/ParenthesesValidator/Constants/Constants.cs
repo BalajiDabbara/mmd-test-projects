@@ -12,5 +12,6 @@ namespace ParenthesesValidator
         public const char OPEN_PARANTHESIS = '(';
         public const char CLOSE_PARANTHESIS = ')';
         public const string WHITE_SPACES = " ";
+        public const string EXIT = "EXIT";
     }
 }

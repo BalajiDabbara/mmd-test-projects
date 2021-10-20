@@ -41,12 +41,24 @@ namespace ParenthesesValidator
 
                 var parenthesesValidator = serviceProvider.GetService<IParenthesesValidator>();
 
-                logger.LogInformation("Please enter your input string");
+                while (true)
+                {
+                    try
+                    {
+                        logger.LogInformation(ErrorMessages.RequestInputString);
+                        string inputString = Console.ReadLine();
 
-                string inputString = Console.ReadLine();
+                        if (inputString.ToUpper() == Constants.EXIT)
+                            break;
 
-                longestLength = parenthesesValidator.GetLengthOfLongestWellFormedParantheses(inputString, logger);
-                logger.LogInformation($"The longest valid parentheses length in {inputString} is {longestLength} ");
+                        longestLength = parenthesesValidator.GetLengthOfLongestWellFormedParantheses(inputString, logger);
+                        logger.LogInformation(ErrorMessages.ResultMessage, inputString, longestLength);
+                    }
+                    catch(Exception ex)
+                    {
+                        logger.LogInformation(ErrorMessages.InvallidInputString);
+                    }
+                }
 
             }
             return longestLength;
