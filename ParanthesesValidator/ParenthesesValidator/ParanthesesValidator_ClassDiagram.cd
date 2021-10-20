@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ParenthesesValidator.Constants">
+    <Position X="9.75" Y="1.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAIAABAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Constants\Constants.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ParenthesesValidator.ErrorMessages">
+    <Position X="9.75" Y="3.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Exception\ErrorMessages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ParenthesesValidator.InvalidInputException">
+    <Position X="6.5" Y="5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Exception\InvlalidExpressionException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ParenthesesValidator.ParenthesesValidatorException">
+    <Position X="6.25" Y="1.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Exception\ParenthesesValidatorException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ParenthesesValidator.ParenthesesValidator" BaseTypeListCollapsed="true">
+    <Position X="2.75" Y="5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAEAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ParenthesesValidator\ParenthesesValidator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ParenthesesValidator.Program">
+    <Position X="2.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="ParenthesesValidator.IParenthesesValidator">
+    <Position X="2.75" Y="3" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ParenthesesValidator\IParenthesesValidator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="ParenthesesValidator.ErrorType">
+    <Position X="10" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAQAAAAAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Exception\ErrorType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

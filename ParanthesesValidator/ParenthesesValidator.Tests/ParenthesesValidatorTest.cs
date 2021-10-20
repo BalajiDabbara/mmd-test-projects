@@ -1,16 +1,20 @@
+using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Parentheses;
+using Moq;
 
-namespace Parentheses.Tests
+namespace ParenthesesValidator.Tests
 {
     [TestClass]
     public class ParenthesesValidatorTest
     {
         private readonly ParenthesesValidator parenthesesValidator;
+        Mock<ILogger> mockLogger;
+
 
         public ParenthesesValidatorTest()
         {
             parenthesesValidator = new ParenthesesValidator();
+            mockLogger  = new Mock<ILogger>();
         }
 
         [TestMethod]
@@ -19,10 +23,9 @@ namespace Parentheses.Tests
             // Setup
             string inputString = "()()";
             int expectedLength = 4;
-            int actualLength = 0;
 
             // Act
-            actualLength = parenthesesValidator.GetLenghtOfLongestWellFormedParantheses(inputString);
+            int actualLength = parenthesesValidator.GetLengthOfLongestWellFormedParantheses(inputString, mockLogger.Object);
 
             // Assert
             Assert.AreEqual(expectedLength, actualLength);
@@ -35,10 +38,9 @@ namespace Parentheses.Tests
             // Setup
             string inputString = "(((())))";
             int expectedLength = 8;
-            int actualLength = 0;
 
             // Act
-            actualLength = parenthesesValidator.GetLenghtOfLongestWellFormedParantheses(inputString);
+            int actualLength = parenthesesValidator.GetLengthOfLongestWellFormedParantheses(inputString, mockLogger.Object);
 
             // Assert
             Assert.AreEqual(expectedLength, actualLength);
@@ -51,10 +53,9 @@ namespace Parentheses.Tests
             // Setup
             string inputString = "(((()";
             int expectedLength = 2;
-            int actualLength = 0;
 
             // Act
-            actualLength = parenthesesValidator.GetLenghtOfLongestWellFormedParantheses(inputString);
+            int actualLength = parenthesesValidator.GetLengthOfLongestWellFormedParantheses(inputString, mockLogger.Object);
 
             // Assert
             Assert.AreEqual(expectedLength, actualLength);
@@ -67,10 +68,9 @@ namespace Parentheses.Tests
             // Setup
             string inputString = "))(((()";
             int expectedLength = 2;
-            int actualLength = 0;
 
             // Act
-            actualLength = parenthesesValidator.GetLenghtOfLongestWellFormedParantheses(inputString);
+            int actualLength = parenthesesValidator.GetLengthOfLongestWellFormedParantheses(inputString, mockLogger.Object);
 
             // Assert
             Assert.AreEqual(expectedLength, actualLength);
@@ -83,10 +83,9 @@ namespace Parentheses.Tests
             // Setup
             string inputString = ")))))";
             int expectedLength = 0;
-            int actualLength = 0;
 
             // Act
-            actualLength = parenthesesValidator.GetLenghtOfLongestWellFormedParantheses(inputString);
+            int actualLength = parenthesesValidator.GetLengthOfLongestWellFormedParantheses(inputString, mockLogger.Object);
 
             // Assert
             Assert.AreEqual(expectedLength, actualLength);
@@ -100,13 +99,40 @@ namespace Parentheses.Tests
             // Setup
             string inputString = "((((((";
             int expectedLength = 0;
-            int actualLength = 0;
 
             // Act
-            actualLength = parenthesesValidator.GetLenghtOfLongestWellFormedParantheses(inputString);
+            int actualLength = parenthesesValidator.GetLengthOfLongestWellFormedParantheses(inputString, mockLogger.Object);
 
             // Assert
             Assert.AreEqual(expectedLength, actualLength);
+
+        }
+
+        [TestMethod]
+        public void ValidateLongestLengthOfParanthesesForEmptyStringIsZero()
+        {
+            // Setup
+            string inputString = " ";
+            int expectedLength = 0;
+
+            // Act
+            int actualLength = parenthesesValidator.GetLengthOfLongestWellFormedParantheses(inputString, mockLogger.Object);
+
+            // Assert
+            Assert.AreEqual(expectedLength, actualLength);
+
+        }
+
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidInputException))]
+        public void ValidateLongestLengthOfParanthesesForInvalidCharacters()
+        {
+            // Setup
+            string inputString = "1234)))()";
+
+            // Act
+            int actualLength = parenthesesValidator.GetLengthOfLongestWellFormedParantheses(inputString, mockLogger.Object);
 
         }
     }

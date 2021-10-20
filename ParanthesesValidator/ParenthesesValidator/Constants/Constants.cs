@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Parentheses
+namespace ParenthesesValidator
 {
     /// <summary>
     /// Constants
@@ -11,5 +11,6 @@ namespace Parentheses
     {
         public const char OPEN_PARANTHESIS = '(';
         public const char CLOSE_PARANTHESIS = ')';
+        public const string WHITE_SPACES = " ";
     }
 }
