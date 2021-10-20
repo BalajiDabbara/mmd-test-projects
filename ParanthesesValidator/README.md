@@ -32,6 +32,8 @@ Following assumptions are considered while designing and implementing the app.
 The below class diagram is generated using Visual Studio 2019 by Class Designer extension.
 
 
+![alt text](https://github.com/BalajiDabbara/mmd-test-projects/blob/main/ParanthesesValidator/ParenthesesValidator/DesignDocs/ParanthesesValidator_ClassDiagram.png?raw=true)
+
 
 ### Code Map Diagram
 The following code map diagram shows the call interaction and dependency between different objects of the application.
@@ -43,6 +45,8 @@ The following code map diagram shows the call interaction and dependency between
 |Grey	|References|
 |Dotted Green|	Interface|
 
+
+![alt text](https://github.com/BalajiDabbara/mmd-test-projects/blob/main/ParanthesesValidator/ParenthesesValidator/DesignDocs/ParanthesesValidator_CodeMap.png?raw=true)
 
 
 ## Steps To Run Code
