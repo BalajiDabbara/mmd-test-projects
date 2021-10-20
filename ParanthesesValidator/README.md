@@ -2,45 +2,50 @@
 # Parentheses Validator
 
 ## Purpose
-The purpose of this document is to describe system design and implementation details for Longest Valid Parentheses validator.
+The purpose of this document is to describe system design and implementation details for the longest valid parentheses finder.
 
 ## Problem
-Find the Longest Valid Parentheses 
+#### Find The Longest Valid Parentheses 
 Given a string containing just the characters '(' and ')', find the length of the longest valid (well-formed) parentheses substring.
 
-Examples:
+#### Examples:
 
+##### Example 1
 Input: s = "(()"
+
 Output: 2
+
 The longest valid parentheses substring is "()"
- 
+
+##### Example 2
 Input: s = ")()())"
+
 Output: 4
+
 The longest valid parentheses substring is "()()".
 
  
 ## Scope
-To provide design and implementation details on parentheses validator that can find longest length of balanced substring.
+To provide design and implementation details on parentheses validator that can find longest length of balanced substring in parentheses string.
 
 ## Assumptions
 Following assumptions are considered while designing and implementing the app.
-- Only Parentheses are considered as input.
-- OTher Characters will fail and throw an excpetion.
+- Only parentheses are considered as input.
+- Other characters will fail and throw an excpetion.
 
 ## Code
-This is developed as a console application in .NET Core using C# language by takingadvantage of Microsoft in-built dependency container. This has simple algorithm that will return the longest length of valid parentheses from a given input string.
+This is developed as a console application in .NET Core using C# language by taking the advantage of Microsoft in-built dependency injection container. This has simple algorithm that will return the longest length of valid parentheses from a given input string.
 
 
 ## Design Diagram
 ### Class Diagram
 The below class diagram is generated using Visual Studio 2019 by Class Designer extension.
 
-
 ![alt text](https://github.com/BalajiDabbara/mmd-test-projects/blob/main/ParanthesesValidator/ParenthesesValidator/DesignDocs/ParanthesesValidator_ClassDiagram.png?raw=true)
 
 
 ### Code Map Diagram
-The following code map diagram shows the call interaction and dependency between different objects of the application.
+The following code map diagram shows the calls interaction and dependency between different objects of the application.
 
 |**Arrow Color**| **Category**|
 |--|--|
@@ -95,3 +100,5 @@ Following are the different test scenarios added for the function app.
 - ValidateLongestLengthOfParanthesesWithAllOpenParantheses
 - ValidateLongestLengthOfParanthesesForEmptyStringIsZero
 - ValidateLongestLengthOfParanthesesForInvalidCharacters
+- ValidateLongestLengthOfParanthesesForAlphabets
+- ValidateLongestLengthOfParanthesesForInvalidBraces
