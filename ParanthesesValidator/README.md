@@ -24,7 +24,7 @@ To provide design and implementation details on parentheses validator that can f
 
 ## Assumptions
 Following assumptions are considered while designing and implementing the app.
-
+- Only Parentheses are considered as input.
 
 
 ## Design Diagram
@@ -45,10 +45,6 @@ The following code map diagram shows the call interaction and dependency between
 
 
 
-### Sequence Diagram
-The sequence of actions between the objects while evaluation expression is depicted in the below sequence diagram.
-
-
 ## Steps To Run Code
 Code is deployed into a GitHub repository at the location 
 Follow the below steps to run the app
@@ -60,14 +56,17 @@ Follow the below steps to run the app
 6)	Local function app will be started.
 7)	Test using Postman or any other API tester.
 
-## Extensibility
-This app is designed which can be extended further in the future. The following operations are not supported in the current implementation and can be extended.
-
 ## Testing
-Online Calculator App  is tested by unit tests with xUnit framework and evaluated the API using Postman.
+ParenthesesValidator is tested by unit tests with MsTest framework and evaluated the API using Postman.
 
 ### Unit Tests
 Added unit tests are added in the project 
 Following are the different test scenarios added for the function app.
-
-## Limitations
+- ValidateLongestLengthOfAllInputWithSequentialBalancedParentheses
+- ValidateLongestLengthOfAllInputWithInnerBalancedParentheses
+- ValidateLongestLengthOfParanthesesWithStartingOpenParantheses
+- ValidateLongestLengthOfParanthesesWithStartingClosedParantheses
+- ValidateLongestLengthOfParanthesesWithAllClosedParantheses
+- ValidateLongestLengthOfParanthesesWithAllOpenParantheses
+- ValidateLongestLengthOfParanthesesForEmptyStringIsZero
+- ValidateLongestLengthOfParanthesesForInvalidCharacters
