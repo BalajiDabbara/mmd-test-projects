@@ -57,11 +57,13 @@ Follow the below steps to run the app
 3)	Open the solution file 
 4)	Build the solution
 5)	Run the App (Ctrl + F5)
-6)	Local function app will be started.
-7)	Test using Postman or any other API tester.
+6)  Enter the input string
+7)  Longest length of valid parentheses will be printed.
+
+
 
 ## Testing
-ParenthesesValidator is tested by unit tests with MsTest framework and evaluated the API using Postman.
+ParenthesesValidator is tested by unit tests with MsTest framework and evaluated manually by providing input.
 
 ### Unit Tests
 Added unit tests are added in the project 
