@@ -37,9 +37,9 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="ParenthesesValidator.Program">
-    <Position X="2.75" Y="1.25" Width="1.5" />
+    <Position X="3.5" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAIAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
